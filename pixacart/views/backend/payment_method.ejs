@@ -1,0 +1,268 @@
+<%- include('../partials/header'); %> 
+<!-- Container Start -->
+<div class="page-wrapper">
+    <div class="main-content">
+        <!-- Page Title Start -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-title-wrapper">
+                    <div class="page-title-box">
+                        <h4 class="page-title"><%=viewTitle%></h4>
+                    </div>
+                    <div class="breadcrumb-list">
+                        <ul>
+                            <li class="breadcrumb-link">
+                                <a href="index.html"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-link active"><%=viewTitle%></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Table Start -->
+        <div class="row">
+            <!-- Styled Table Card-->
+                <div class="col-xl-6 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Cash On Delivery</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="save_settings" method="post" autocomplete="off" data-redirect="settings/payment-method">
+                                <div class="row"> 
+                                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="pc-checkout-tab">
+                                            <div class="pc-radio-button">
+                                                <input id="radio-1"  type="radio" name="cash_on_delivery[status]" value="1" <%= cod.status == 1 ? 'checked' : '' %>>
+                                                <label  for="radio-1" class="radio-label">Active</label>
+                                            </div>
+                                            <div class="pc-radio-button">
+                                                <input id="radio-2" type="radio" name="cash_on_delivery[status]" value="0" <%= cod.status == 0 ? 'checked' : '' %>>
+                                                <label for="radio-2" class="radio-label">Inactive</label>
+                                            </div>
+                                            <div class="pc-place-order">
+                                                <!--button type="button" class="btn btn-primary squer-btn mt-2 mr-2">Place Order</button-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-0">
+                                    <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Razorpay</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="save_settings" method="post" autocomplete="off" data-redirect="settings/payment-method">
+                                <div class="row"> 
+                                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="pc-checkout-tab">
+                                            <div class="pc-radio-button">
+                                                <input id="radio-3" type="radio"  name="RAZORPAY_DETAILS[status]" value="1" <%= razorepay.status == 1 ? 'checked' : '' %>>
+                                                <label  for="radio-3" class="radio-label">Active</label>
+                                            </div>
+                                            <div class="pc-radio-button">
+                                                <input id="radio-4"  type="radio"  name="RAZORPAY_DETAILS[status]" value="0" <%= razorepay.status == 0 ? 'checked' : '' %>>
+                                                <label for="radio-4" class="radio-label">Inactive</label>
+                                            </div>
+                                            <div class="pc-place-order">
+                                                <!--button type="button" class="btn btn-primary squer-btn mt-2 mr-2">Place Order</button-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="text-input" class="col-form-label">Razorpay Key</label>
+                                            <input class="form-control require" type="text" name="RAZORPAY_DETAILS[RAZORPAY_KEY]"  placeholder="Key" value="<%= razorepay ? razorepay.RAZORPAY_KEY : '' %>">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="text-input" class="col-form-label">Razorpay Secret</label>
+                                            <input class="form-control require" type="text" name="RAZORPAY_DETAILS[RAZORPAY_SECRET]" placeholder="Secret Key" value="<%= razorepay ? razorepay.RAZORPAY_SECRET : '' %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+        <div class="row">
+            <!-- Styled Table Card-->
+                <div class="col-xl-6 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Paystack</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="save_settings" method="post" autocomplete="off" data-redirect="settings/payment-method">
+                                <div class="row"> 
+                                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="pc-checkout-tab">
+                                            <div class="pc-radio-button">
+                                                <input id="radio-5" type="radio"  name="PAYSTACK_DETAILS[PAYSTACK_STATUS]" value="1" <%= paystack.PAYSTACK_STATUS == 1 ? 'checked' : '' %>>
+                                                <label  for="radio-5" class="radio-label">Active</label>
+                                            </div>
+                                            <div class="pc-radio-button">
+                                                <input id="radio-6"  type="radio"  name="PAYSTACK_DETAILS[PAYSTACK_STATUS]" value="0" <%= paystack.PAYSTACK_STATUS == 0 ? 'checked' : '' %>>
+                                                <label for="radio-6" class="radio-label">Inactive</label>
+                                            </div>
+                                            <div class="pc-place-order">
+                                                <!--button type="button" class="btn btn-primary squer-btn mt-2 mr-2">Place Order</button-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="text-input" class="col-form-label">public Key</label>
+                                            <input class="form-control require" type="text" name="PAYSTACK_DETAILS[PUBLIC_KEY]"  placeholder="Key" value="<%= paystack ? paystack.PUBLIC_KEY : '' %>">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="text-input" class="col-form-label">Secret Key</label>
+                                            <input class="form-control require" type="text" name="PAYSTACK_DETAILS[SECRET_KEY]" placeholder="Secret Key" value="<%= paystack ? paystack.SECRET_KEY : '' %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Styled Table Card-->
+                <div class="col-xl-6 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Paypal</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="save_settings" method="post" autocomplete="off" data-redirect="settings/payment-method">
+                                <div class="row"> 
+                                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="pc-checkout-tab">
+                                            <div class="pc-radio-button">
+                                                <input id="radio-7" type="radio"  name="PAYPAL_DETAILS[PAYPAL_STATUS]" value="1" <%= paypal.PAYPAL_STATUS == 1 ? 'checked' : '' %>>
+                                                <label  for="radio-7" class="radio-label">Active</label>
+                                            </div>
+                                            <div class="pc-radio-button">
+                                                <input id="radio-8"  type="radio"  name="PAYPAL_DETAILS[PAYPAL_STATUS]" value="0" <%= paypal.PAYPAL_STATUS == 0 ? 'checked' : '' %>>
+                                                <label for="radio-8" class="radio-label">Inactive</label>
+                                            </div>
+                                            <div class="pc-place-order">
+                                                <!--button type="button" class="btn btn-primary squer-btn mt-2 mr-2">Place Order</button-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="text-input" class="col-form-label">Client ID</label>
+                                            <input class="form-control require" type="text" name="PAYPAL_DETAILS[CLIENT_ID]"  placeholder="Key" value="<%= paypal ? paypal.CLIENT_ID : '' %>">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="text-input" class="col-form-label">Secret Key</label>
+                                            <input class="form-control require" type="text" name="PAYPAL_DETAILS[SECRET_KEY]" placeholder="Secret Key" value="<%= paypal ? paypal.SECRET_KEY : '' %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+
+        </div>
+        <div class="row">
+            <div class="col-xl-6 col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Stripe</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="save_settings" method="post" autocomplete="off" data-redirect="settings/payment-method">
+                            <div class="row"> 
+                                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="pc-checkout-tab">
+                                        <div class="pc-radio-button">
+                                            <input id="radio-9" type="radio"  name="STRIPE_DETAILS[STRIPE_STATUS]" value="1" <%= stripe.STRIPE_STATUS == 1 ? 'checked' : '' %>>
+                                            <label  for="radio-9" class="radio-label">Active</label>
+                                        </div>
+                                        <div class="pc-radio-button">
+                                            <input id="radio-10"  type="radio"  name="STRIPE_DETAILS[STRIPE_STATUS]" value="0" <%= stripe.STRIPE_STATUS == 0 ? 'checked' : '' %>>
+                                            <label for="radio-10" class="radio-label">Inactive</label>
+                                        </div>
+                                        <div class="pc-place-order">
+                                            <!--button type="button" class="btn btn-primary squer-btn mt-2 mr-2">Place Order</button-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="text-input" class="col-form-label">public Key</label>
+                                        <input class="form-control require" type="text" name="STRIPE_DETAILS[PUBLIC_KEY]"  placeholder="Key" value="<%= stripe ? stripe.PUBLIC_KEY : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-6">
+                                     <div class="form-group">
+                                        <label for="text-input" class="col-form-label">Secret Key</label>
+                                        <input class="form-control require" type="text" name="STRIPE_DETAILS[SECRET_KEY]" placeholder="Secret Key" value="<%= stripe ? stripe.SECRET_KEY : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-6">
+                                     <div class="form-group">
+                                        <label for="text-input" class="col-form-label">Merchant Display Name</label>
+                                        <input class="form-control require" type="text" name="STRIPE_DETAILS[MERCHANT_NAME]" placeholder="Merchant Display Name" value="<%= stripe ? stripe.MERCHANT_NAME : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-6">
+                                    <div class="form-group">
+                                       <label for="text-input" class="col-form-label">Merchant Country Code</label>
+                                       <input class="form-control require" type="text" name="STRIPE_DETAILS[MERCHANT_COUNTRY_CODE]" placeholder="Merchant Country Code" value="<%= stripe ? stripe.MERCHANT_COUNTRY_CODE : '' %>">
+                                   </div>
+                               </div>
+                               <div class="col-xl-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="text-input" class="col-form-label">Merchant Identifier</label>
+                                        <input class="form-control require" type="text" name="STRIPE_DETAILS[MERCHANT_IDENTIFIER]" placeholder="Merchant Identifier" value="<%= stripe ? stripe.MERCHANT_IDENTIFIER : '' %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-0">
+                                <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <%- include('../partials/footer'); %> 

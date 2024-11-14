@@ -1,0 +1,154 @@
+	
+                        <div class="pc-footer-btm">
+                            <% if(webSetting && webSetting.APP_NAME){ %>
+                                <p>Copyright <%= new Date().getFullYear();%> © <%=webSetting.APP_NAME; %> All Rights Reserved.</p>
+                            <% }else{ %> 
+                                <p>Copyright <%= new Date().getFullYear();%> © <%=config.APP_NAME; %> All Rights Reserved.</p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Preview Setting Box -->
+        <!--div class="slide-setting-box">
+            <div class="slide-setting-holder">
+            <div class="setting-box-head">
+                <h4>Dashboard Demo</h4>
+                <a href="javascript:void(0);" class="close-btn">Close</a>
+            </div>
+            <div class="setting-box-body">
+                <div class="sd-light-vs"> 
+                    <a href="#">
+                        Light Version
+                        <img src="https://via.placeholder.com/208x169" alt=""/>
+                    </a>
+                </div>
+                <div class="sd-light-vs"> 
+                    <a href="#">
+                        dark Version
+                        <img src="https://via.placeholder.com/208x169" alt=""/>
+                    </a>
+                </div>
+            </div>
+            <div class="sd-color-op">
+                <h5>color option</h5> 
+                <div id="style-switcher">
+                    <div>
+                        <ul class="colors">
+                            <li>
+                                <p class='colorchange' id='color'>
+                                </p>
+                            </li>
+                            <li>
+                                <p class='colorchange' id='color2'>
+                                </p>
+                            </li>
+                            <li>
+                                <p class='colorchange' id='color3'>
+                                </p>
+                            </li>
+                            <li>
+                                <p class='colorchange' id='color4'>
+                                </p>
+                            </li>
+                            <li>
+                                <p class='colorchange' id='color5'>
+                                </p>
+                            </li>
+                            <li>
+                                <p class='colorchange' id='style'>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div-->
+    <!-- Preview Setting -->
+    <div class="pc-notifications pc-error">
+        <p><span>Duhh!</span>Something Went Wrong</p>
+    </div>
+    <!-- Script Start -->
+	<script src="<%=config.APP_URL; %>js/jquery.min.js"></script>
+    <script src="<%=config.APP_URL; %>js/popper.min.js"></script>
+    <!-- <script src="/js/datatables.min.js"></script>
+    <script src="/js/dataTables.responsive.min.js"></script> -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script  src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script  src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <script src="<%=config.APP_URL; %>js/bootstrap.min.js"></script>
+	<script src="<%=config.APP_URL; %>js/swiper.min.js"></script>
+    <% if(pageTitle == 'Dashboard'){  %>
+    <script src="<%=config.APP_URL; %>js/apexchart/apexcharts.min.js"></script>
+    <% } %>
+    <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+	<!-- Page Specific -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="<%=config.APP_URL; %>js/nice-select.min.js"></script>
+    <script src="<%=config.APP_URL; %>js/sweetalert2all.min.js"></script>
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <!-- Page Specific Script -->
+    <script src="<%=config.APP_URL; %>js/tagging.min.js"></script>
+    <script src="<%=config.APP_URL; %>js/tag.js"></script>
+
+    <!-- Custom Script -->
+    <script  src="<%=config.APP_URL; %>js/custom.js"></script>
+    <script  src="<%=config.APP_URL; %>js/common.js"></script>
+    <% if(pageTitle == 'Dashboard'){  %>
+    <script  src="<%=config.APP_URL; %>js/apexchart/control-chart-apexcharts.js"></script>
+    <% } %>
+    <% if(pageTitle == 'products'){  %>
+    <script  src="<%=config.APP_URL; %>js/select2_colorpicker.js"></script>
+    <% } %>
+    
+    <script  src="<%=config.APP_URL; %>js/custom_code.js"></script>
+    
+
+    <!--script type="text/javascript">  
+    
+        Dropzone.autoDiscover = false;  
+        
+        var myDropzone = new Dropzone(".dropzone", {  
+            url				: '/' ,  
+           autoProcessQueue: false,  
+           maxFilesize: 1,  
+           acceptedFiles: ".jpeg,.jpg,.png,.gif"  
+        });  
+        
+        $('#addProduct').click(function(){  
+           myDropzone.processQueue();  
+        });  
+            
+    </script-->
+
+
+</body>
+
+
+<div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="MyModalTitle">Product Variants</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="MyModalContent">
+        
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" data-action="submitMe" style="display:none;" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</html>

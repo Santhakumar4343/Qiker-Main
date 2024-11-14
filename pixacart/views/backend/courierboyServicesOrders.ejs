@@ -1,0 +1,370 @@
+<%- include('../partials/header'); %>
+    <input type="hidden" id="courierServices" value="<%=JSON.stringify(courierServices); %>" >
+   <!-- Container Start -->
+    <div class="page-wrapper">
+        <div class="main-content">
+            <!-- Page Title Start -->
+            <div class="row">
+                <div class="col xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-title-wrapper">
+                        <div class="page-title-box">
+                            <h4 class="page-title"><%=viewTitle%></h4>
+                        </div>
+                        <div class="breadcrumb-list">
+                            <ul>
+                                <li class="breadcrumb-link">
+                                    <a href="index.html"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-link active"><%=viewTitle%></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Products view Start -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header pb-0">
+                            <h4 class="card-title"><%=pageTitle%></h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                               <div class="mfh-machine-profile">
+                                    <ul class="nav nav-tabs" id="myTab1" role="tablist">
+                                        
+                                       
+                                       
+                                        <li class="nav-item orderTab">
+                                            <a class="nav-link" id="profile-tab22" data-toggle="tab" href="#dispatch" role="tab" aria-controls="profile" aria-selected="false">Dispatched </a>
+                                            
+                                        </li>
+                                        <li class="nav-item orderTab">
+                                            <a class="nav-link" id="profile-tab22" data-toggle="tab" href="#delivered" role="tab" aria-controls="profile" aria-selected="false">Delivered (<span id="deliveredOrder">0</span>)</a>
+                                            
+                                        </li>
+                                        <li class="nav-item orderTab">
+                                            <a class="nav-link" id="profile-tab22" data-toggle="tab" href="#canceled" role="tab" aria-controls="profile" aria-selected="false">Canceled (<span id="canceledOrder">0</span>)</a>
+                                            
+                                        </li>
+                                        <li class="nav-item orderTab">
+                                            <a class="nav-link" id="profile-tab22" data-toggle="tab" href="#return_requested" role="tab" aria-controls="profile" aria-selected="false">Return Requested (<span id="returnOrder">0</span>)</a>
+                                            
+                                        </li>
+                                        <li class="nav-item orderTab">
+                                            <a class="nav-link" id="profile-tab22" data-toggle="tab" href="#refund_requested" role="tab" aria-controls="profile" aria-selected="false">Refund Requested (<span id="refundOrder">0</span>)</a>
+                                            
+                                        </li>
+                                        
+                                    </ul>
+                                    <div class="tab-content pc-content2" id="myTabContent2">
+                                        
+                                        <div class="tab-pane fade show active" id="dispatch" role="tabpanel">
+                                            <button type="button" class="btn btn-primary mt-2 mr-2 updateAllStatus" action="1"  url="orders/updateOrderStatus" disabled>Delivered</button>
+                                            <table class="table table-striped table-bordered dt-responsive nowrap display dataTableAjax" style="width:100%" data-action-url="courierboy_orders_list/5" data-target-section="tbody" data-column-class="[{className:'sr'},{className:'order_id'},{className:'pro_name'},{className:'pro_sku'},{className:'prod_size'},{className:'pro_qty'},{className:'pro_price'},{className:'subtotal'},{className: 'cust_name'},{className: 'cust_email'},{className: 'order_date'},{className: 'seller_name'},{className: 'order_status'},{className: 'order_paystatus'},{className: 'order_paymode'},{className: 'action'},{className:'send_otp'}]"  data-refresh-dataTablePosition='0' data-filter='filter' data-sort="[{'targets': [],'orderable': false},{'targets': [<%=targetVisible%>],'visible': false}]" data-id="#dispatchOrder">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="sr">#</th>
+                                                        <th class="order_id">Order ID</th>
+                                                        <th class="pro_name">Product Name</th>
+                                                        <th class="pro_sku">Product SKU</th>
+                                                        <th class="selectedSize">Available Options</th>
+                                                        <th class="pro_qty">Qty</th>
+                                                        <th class="pro_price">Price</th>
+                                                        <th class="subtotal">Subtotal</th>
+                                                        <th class="cust_name">Customer Name</th>
+                                                        <th class="cust_email">Customer email</th>
+                                                        <th class="order_date">Order Date</th>
+                                                        <th class="seller_name">Seller Name</th>
+                                                        <th class="order_status">Order Status</th>
+                                                        <th class="order_paystatus">Payment Status</th>
+                                                        <th class="order_paymode">Payment Mode</th>
+                                                        <th class="action">Action</th>
+                                                        <th class="send_otp">Send OTP</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade" id="delivered" role="tabpanel">
+                                            <table class="table table-striped table-bordered dt-responsive nowrap display dataTableAjax" style="width:100%" data-action-url="courierboy_orders_list/1" data-target-section="tbody" data-column-class="[{className:'sr'},{className:'order_id'},{className:'pro_name'},{className:'pro_sku'},{className:'prod_size'},{className:'pro_qty'},{className:'pro_price'},{className:'subtotal'},{className: 'cust_name'},{className: 'order_date'},{className: 'seller_name'},{className: 'order_status'},{className: 'order_paystatus'},{className: 'order_paymode'},{className: 'action'}]"  data-refresh-dataTablePosition='0' data-filter='filter' data-sort="[{'targets': [],'orderable': false},{'targets': [<%=targetVisible%>],'visible': false}]" data-id="#deliveredOrder">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="sr">#</th>
+                                                        <th class="order_id">Order ID</th>
+                                                        <th class="pro_name">Product Name</th>
+                                                        <th class="pro_sku">Product SKU</th>
+                                                        <th class="selectedSize">Available Options</th>
+                                                        <th class="pro_qty">Qty</th>
+                                                        <th class="pro_price">Price</th>
+                                                        <th class="subtotal">Subtotal</th>
+                                                        <th class="cust_name">Customer Name</th>
+                                                        <th class="order_date">Order Date</th>
+                                                        <th class="seller_name">Seller Name</th>
+                                                        <th class="order_status">Order Status</th>
+                                                        <th class="order_paystatus">Payment Status</th>
+                                                        <th class="order_paymode">Payment Mode</th>
+                                                        <th class="action">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade" id="canceled" role="tabpanel">
+                                            <table class="table table-striped table-bordered dt-responsive nowrap display dataTableAjax" style="width:100%" data-action-url="courierboy_orders_list/6" data-target-section="tbody" data-column-class="[{className:'sr'},{className:'order_id'},{className:'pro_name'},{className:'pro_sku'},{className:'prod_size'},{className:'pro_qty'},{className:'pro_price'},{className:'subtotal'},{className: 'cust_name'},{className: 'order_date'},{className: 'seller_name'},{className: 'order_status'},{className: 'order_paystatus'},{className: 'order_paymode'},{className: 'action'}]"  data-refresh-dataTablePosition='0' data-filter='filter' data-sort="[{'targets': [],'orderable': false},{'targets': [<%=targetVisible%>],'visible': false}]" data-id="#canceledOrder">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="sr">#</th>
+                                                        <th class="order_id">Order ID</th>
+                                                        <th class="pro_name">Product Name</th>
+                                                        <th class="pro_sku">Product SKU</th>
+                                                        <th class="selectedSize">Available Options</th>
+                                                        <th class="pro_qty">Qty</th>
+                                                        <th class="pro_price">Price</th>
+                                                        <th class="subtotal">Subtotal</th>
+                                                        <th class="cust_name">Customer Name</th>
+                                                        <th class="order_date">Order Date</th>
+                                                        <th class="seller_name">Seller Name</th>
+                                                        <th class="order_status">Order Status</th>
+                                                        <th class="order_paystatus">Payment Status</th>
+                                                        <th class="order_paymode">Payment Mode</th>
+                                                        <th class="action">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade" id="return_requested" role="tabpanel">
+                                            <table class="table table-striped table-bordered dt-responsive nowrap display dataTableAjax" style="width:100%" data-action-url="courierboy_orders_list/8" data-target-section="tbody" data-column-class="[{className:'sr'},{className:'order_id'},{className:'pro_name'},{className:'pro_sku'},{className:'prod_size'},{className:'pro_qty'},{className:'pro_price'},{className:'subtotal'},{className: 'cust_name'},{className: 'order_date'},{className: 'seller_name'},{className: 'order_status'},{className: 'order_paystatus'},{className: 'order_paymode'},{className: 'action'}]"  data-refresh-dataTablePosition='0' data-filter='filter' data-sort="[{'targets': [],'orderable': false},{'targets': [<%=targetVisible%>],'visible': false}]" data-id="#returnOrder">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="sr">#</th>
+                                                        <th class="order_id">Order ID</th>
+                                                        <th class="pro_name">Product Name</th>
+                                                        <th class="pro_sku">Product SKU</th>
+                                                        <th class="selectedSize">Available Options</th>
+                                                        <th class="pro_qty">Qty</th>
+                                                        <th class="pro_price">Price</th>
+                                                        <th class="subtotal">Subtotal</th>
+                                                        <th class="cust_name">Customer Name</th>
+                                                        <th class="order_date">Order Date</th>
+                                                        <th class="seller_name">Seller Name</th>
+                                                        <th class="order_status">Order Status</th>
+                                                        <th class="order_paystatus">Payment Status</th>
+                                                        <th class="order_paymode">Payment Mode</th>
+                                                        <th class="action">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade" id="refund_requested" role="tabpanel">
+                                            <table class="table table-striped table-bordered dt-responsive nowrap display dataTableAjax" style="width:100%" data-action-url="courierboy_orders_list/7" data-target-section="tbody" data-column-class="[{className:'sr'},{className:'order_id'},{className:'pro_name'},{className:'pro_sku'},{className:'prod_size'},{className:'pro_qty'},{className:'pro_price'},{className:'subtotal'},{className: 'cust_name'},{className: 'order_date'},{className: 'seller_name'},{className: 'order_status'},{className: 'order_paystatus'},{className: 'order_paymode'},{className: 'action'}]"  data-refresh-dataTablePosition='0' data-filter='filter' data-sort="[{'targets': [],'orderable': false},{'targets': [<%=targetVisible%>],'visible': false}]" data-id="#refundOrder">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="sr">#</th>
+                                                        <th class="order_id">Order ID</th>
+                                                        <th class="pro_name">Product Name</th>
+                                                        <th class="pro_sku">Product SKU</th>
+                                                        <th class="selectedSize">Available Options</th>
+                                                        <th class="pro_qty">Qty</th>
+                                                        <th class="pro_price">Price</th>
+                                                        <th class="subtotal">Subtotal</th>
+                                                        <th class="cust_name">Customer Name</th>
+                                                        <th class="order_date">Order Date</th>
+                                                        <th class="seller_name">Seller Name</th>
+                                                        <th class="order_status">Order Status</th>
+                                                        <th class="order_paystatus">Payment Status</th>
+                                                        <th class="order_paymode">Payment Mode</th>
+                                                        <th class="action">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+
+
+    <!-- Model 6-7-8 -->
+    <section>
+	<div class="ecom_labelprint modal fade" id="generateLabelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel02">Order Label</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="create_label" method="post" autocomplete="off">
+            <div class="modal-body" id="appendLabelHtml">
+             
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="printDiv();">Print</button>
+            </div>
+        </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel02">Add New Label</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="create_label" method="post" autocomplete="off">
+            <div class="modal-body" id="appendLabelHtml">
+                <!-- Table Start -->
+                <div class="row">
+                    <div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="pc-invoice-title">
+									<h4>Order - 14812</h4>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-6">
+										<h5 class="mb-2">Billed To:</h5>
+										<p>John Smith</p>
+										<p>14812 Main</p>
+										<p>Sdr. 2c</p>
+										<p>Lorem Ipsum, RY 545782</p>
+									</div>
+									<div class="col-sm-6 text-sm-end">
+										<h5 class="mb-2">Shipped To:</h5>
+										<p>Jenny Mark</p>
+										<p>2211 Main</p>
+										<p>Sdr. 2B</p>
+										<p>Lorem Ipsum, RY 545782</p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6 mt-3">
+										<h5 class="mb-2">Payment Method:</h5>
+										<p>Visa ending **** 1144</p>
+										<p>vd@gmail.com</p>
+									</div>
+									<div class="col-sm-6 mt-3 text-sm-end">
+										<h5 class="mb-2">Order Date:</h5>
+										<p>22/12/2021</p>
+									</div>
+								</div>
+								<div class="py-2 mt-3 mb-2">
+									<h4 class="font-size-15">Order Summary</h4>
+								</div>
+								<div class="table-responsive">
+									<table class="table table-styled mb-0">
+										<thead>
+											<tr>
+												<th style="width: 70px;">No.</th>
+												<th>Item</th>
+												<th class="text-end">Price</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>01</td>
+												<td>SplashDash - Admin Html Template</td>
+												<td class="text-end">$359.00</td>
+											</tr>
+											
+											<tr>
+												<td>02</td>
+												<td>SplashDash - Landing Template</td>
+												<td class="text-end">$749.00</td>
+											</tr>
+
+											<tr>
+												<td>03</td>
+												<td>SplashDash - Admin Html Template</td>
+												<td class="text-end">$555.00</td>
+											</tr>
+											<tr>
+												<td colspan="2" class="text-end">Sub Total</td>
+												<td class="text-end">$4578.00</td>
+											</tr>
+											<tr>
+												<td colspan="2" class="text-end">
+													<strong>Shipping</strong></td>
+												<td class=" text-end">$14.00</td>
+											</tr>
+											<tr>
+												<td colspan="2" class="text-end">
+													<strong>Total</strong></td>
+												<td class=" text-end"><h4 class="m-0">$45781.00</h4></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="d-print-none mt-2">
+									<div class="float-end">
+										<a href="javascript:window.print()" class="btn btn-success waves-effect waves-light me-1"><i class="fa fa-print"></i></a>
+										<a href="javascript:;" class="btn btn-primary w-md waves-effect waves-light">Send</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>            
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="printDiv();">Print</button>
+            </div>
+        </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="otpModal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="otpModalLabel">Enter OTP</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="verifyOtpForm">
+                        <div class="form-group">
+                            <label for="otpInput">OTP</label>
+                            <input type="text" class="form-control" id="otpInput" name="otp" required>
+                            <input type="hidden" id="emailInput" name="userEmail" value="">
+                            <input type="hidden" id="orderIdInput" name="orderId">
+                        </div>
+                        <button type="submit" class="btn btn-success">Verify OTP</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      
+
+<%- include('../partials/footer'); %>

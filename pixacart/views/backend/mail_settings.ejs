@@ -1,0 +1,127 @@
+<%- include('../partials/header'); %> 
+<!-- Container Start -->
+<div class="page-wrapper">
+    <div class="main-content">
+        <!-- Page Title Start -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-title-wrapper">
+                    <div class="page-title-box">
+                        <h4 class="page-title"><%=viewTitle%></h4>
+                    </div>
+                    <div class="breadcrumb-list">
+                        <ul>
+                            <li class="breadcrumb-link">
+                                <a href="index.html"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-link active"><%=viewTitle%></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Table Start -->
+        <div class="row">
+            <!-- Styled Table Card-->
+            <div class="col-xl-6 col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>SMTP Mail Config</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="save_settings" method="post" autocomplete="off" data-redirect="settings/mail-config">
+                            <div class="row"> 
+                                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="pc-checkout-tab">
+                                        <div class="pc-radio-button">
+                                            <input id="radio-3" type="radio"  name="smtp_mail[status]" value="1" <%= smtpDetails.status == 1 ? 'checked' : '' %>>
+                                            <label  for="radio-3" class="radio-label">Active</label>
+                                        </div>
+                                        <div class="pc-radio-button">
+                                            <input id="radio-4"  type="radio"  name="smtp_mail[status]" value="0" <%= smtpDetails.status == 0 ? 'checked' : '' %>>
+                                            <label for="radio-4" class="radio-label">Inactive</label>
+                                        </div>
+                                        <div class="pc-place-order">
+                                            <!--button type="button" class="btn btn-primary squer-btn mt-2 mr-2">Place Order</button-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="text-input" class="col-form-label">From Email</label>
+                                        <input class="form-control require" type="text" name="smtp_mail[from_email]"  placeholder="Email" value="<%= smtpDetails ? smtpDetails.from_email : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="text-input" class="col-form-label">User Name</label>
+                                        <input class="form-control require" type="text" name="smtp_mail[username]"  placeholder="Username" value="<%= smtpDetails ? smtpDetails.username : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-6">
+                                        <div class="form-group">
+                                        <label for="text-input" class="col-form-label">Password</label>
+                                        <input class="form-control require" type="text" name="smtp_mail[password]" placeholder="Password" value="<%= smtpDetails ? smtpDetails.password : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="text-input" class="col-form-label">Host</label>
+                                        <input class="form-control require" type="text" name="smtp_mail[host]" placeholder="Host" value="<%= smtpDetails ? smtpDetails.host : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="text-input" class="col-form-label">Port</label>
+                                        <input class="form-control require" type="text" name="smtp_mail[port]" placeholder="Port" value="<%= smtpDetails ? smtpDetails.port : '' %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-0">
+                                <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Send Bulk Mail</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="settings/sendBulkMail" method="post" autocomplete="off">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-6">
+                                    <div class="form-group">
+                                       <label for="city" class="col-form-label">To</label>
+                                        <select class="js-data-ajax form-control require" data-ajax--url="getActiveUserList" data-placeholder="Select User List" multiple="" name="user_ids[]" id="mail_user_list">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="text-input" class="col-form-label">Subject</label>
+                                        <input class="form-control require" type="text" name="mail_subject"  placeholder="Subject" value="">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="city" class="col-form-label">Body</label>
+                                        <textarea name="mail_body" class="myEditor" id="editor_id" placeholder="Enter text ...">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-0">
+                                <button class="btn btn-primary squer-btn mt-2 mr-2" type="button" id="sendBulkMail">Send <i class="fab fa-telegram-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <%- include('../partials/footer'); %> 

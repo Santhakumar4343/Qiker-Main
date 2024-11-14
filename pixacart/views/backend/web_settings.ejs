@@ -1,0 +1,345 @@
+<%- include('../partials/header'); %>
+<!-- Container Start -->
+        <div class="page-wrapper">
+            <div class="main-content">
+                <!-- Page Title Start -->
+                <div class="row">
+                    <div class="col xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-box">
+                                <h4 class="page-title"><%=viewTitle%></h4>
+                            </div>
+                            <div class="breadcrumb-list">
+                                <ul>
+                                    <li class="breadcrumb-link">
+                                        <a href="index.html"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                                    </li>
+                                    <li class="breadcrumb-link active"><%=viewTitle%></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Products view Start -->
+                <div class="row">
+                  <!-- Styled Table Card-->
+                     <div class="col-xl-6 col-lg-6">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h4>Commission On Sales</h4>
+                              </div>
+                              <div class="card-body">
+                                  <form action="save_settings" method="post" autocomplete="off" data-redirect="settings/web-config">
+                                       <div class="row">
+                                          <div class="col-xl-12 col-lg-6">
+                                              <div class="form-group">
+                                                  <label for="text-input" class="col-form-label">Sales Commission (In percent)</label>
+                                                  <input class="form-control require" type="number" name="sales_commission"  placeholder="Sales Commission" value="<%= commission ? commission.salesCommission : 0 %>" min="0">
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="form-group mb-0">
+                                          <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-xl-6 col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Order Cancellation Charges</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="save_settings" method="post" autocomplete="off" data-redirect="settings/web-config">
+                                     <div class="row">
+                                        <div class="col-xl-12 col-lg-6">
+                                            <div class="form-group">
+                                                <label for="text-input" class="col-form-label">Order Cancellation Charges (In percent)</label>
+                                                <input class="form-control require" type="number" name="cancellation_charges"  placeholder="Sales Commission" value="<%= commission ? commission.cancellationCharges : 0 %>" min="0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+                <div class="row">
+                  <!-- Styled Table Card-->
+                     <div class="col-xl-3 col-lg-6">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h4>Login Page Logo</h4>
+                              </div>
+                              <div class="card-body">
+                                  <form action="settings/uploadWebImages" method="post" autocomplete="off" data-redirect="settings/web-config">
+                                      <div class="row">
+                                        <div class="col-md-12">
+                                          <div class="product-upload-wrap">
+                                            <ul class="product-upload-list 1-colum">
+                                                <li>
+                                                    <div>
+                                                        <input type="hidden" name="type" value="logo1">
+                                                        <input class="form-control d-none require" type="file" placeholder="Upload Image" name="webimages" id="logo_image" data-error="Please choose an image to upload.">
+                                                        <label class="dragdrop_box" for="logo_image">                                                 
+                                                            <span class="dragdrop_icon">
+                                                                <img src="/images/drag.svg" alt="icon" class="img-fluid">
+                                                            </span>
+                                                            <div class="dragdrop_info">
+                                                                <p><span>Browse</span> Image</p>
+                                                                <span class="dragdrop_sprt">Recommended Size 38x41</span><br>
+                                                                <span class="dragdrop_sprt">Supports: JPG, PNG </span>
+                                                                <p><span class="dragdrop_sprt numberOfFiles"></span></p>
+                                                            </div>                                                
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <% if(webImages && webImages.logo1){ %>
+                                                <li class="imgArea">
+                                                    <div class="product-upload-image text-center">
+                                                      <img src="/uploads/webimages/<%= webImages ? webImages.logo1 : '' %>" alt="image" class="img-fluid">
+                                                    </div>
+                                                </li>
+                                                <% } %>
+                                            </ul>  
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-group mb-0">
+                                          <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-xl-3 col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Favicon Image</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="settings/uploadWebImages" method="post" autocomplete="off" data-redirect="settings/web-config">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="product-upload-wrap">
+                                          <ul class="product-upload-list 1-colum">
+                                              <li>
+                                                  <div>
+                                                      <input type="hidden" name="type" value="favicon">
+                                                      <input class="form-control d-none require" type="file" placeholder="Upload Image" name="webimages" id="favicon_images" data-error="Please choose an image to upload.">
+                                                      <label class="dragdrop_box" for="favicon_images">                                                 
+                                                          <span class="dragdrop_icon">
+                                                              <img src="/images/drag.svg" alt="icon" class="img-fluid">
+                                                          </span>
+                                                          <div class="dragdrop_info">
+                                                              <p><span>Browse</span> Image</p>
+                                                              <span class="dragdrop_sprt">Recommended Size 32x32</span><br>
+                                                              <span class="dragdrop_sprt">Supports: JPG, PNG </span>
+                                                              <p><span class="dragdrop_sprt numberOfFiles"></span></p>
+                                                          </div>                                                
+                                                      </label>
+                                                  </div>
+                                              </li>
+                                              <% if(webImages && webImages.favicon){ %>
+                                              <li class="imgArea">
+                                                  <div class="product-upload-image text-center">
+                                                    <img src="/uploads/webimages/<%= webImages ? webImages.favicon : '' %>" alt="image" class="img-fluid">
+                                                  </div>
+                                              </li>
+                                              <% } %>
+                                          </ul>  
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                  <!-- Styled Table Card-->
+                     <div class="col-xl-3 col-lg-6">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h4>Home Page Logo</h4>
+                              </div>
+                              <div class="card-body">
+                                  <form action="settings/uploadWebImages" method="post" autocomplete="off" data-redirect="settings/web-config">
+                                      <div class="row">
+                                        <div class="col-md-12">
+                                          <div class="product-upload-wrap">
+                                            <ul class="product-upload-list 1-colum">
+                                                <li>
+                                                    <div>
+                                                        <input type="hidden" name="type" value="logo2">
+                                                        <input class="form-control d-none require" type="file" placeholder="Upload Image" name="webimages" id="logo2_image" data-error="Please choose an image to upload.">
+                                                        <label class="dragdrop_box" for="logo2_image">                                                 
+                                                            <span class="dragdrop_icon">
+                                                                <img src="/images/drag.svg" alt="icon" class="img-fluid">
+                                                            </span>
+                                                            <div class="dragdrop_info">
+                                                                <p><span>Browse</span> Image</p>
+                                                                <span class="dragdrop_sprt">Recommended Size 41x38</span><br>
+                                                                <span class="dragdrop_sprt">Supports: JPG, PNG </span>
+                                                                <p><span class="dragdrop_sprt numberOfFiles"></span></p>
+                                                            </div>                                                
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <% if(webImages && webImages.logo2){ %>
+                                                <li class="imgArea">
+                                                    <div class="product-upload-image text-center">
+                                                      <img src="/uploads/webimages/<%= webImages ? webImages.logo2 : '' %>" alt="image" class="img-fluid">
+                                                    </div>
+                                                </li>
+                                                <% } %>
+                                            </ul>  
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-group mb-0">
+                                          <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-xl-3 col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Login Page Image</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="settings/uploadWebImages" method="post" autocomplete="off" data-redirect="settings/web-config">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="product-upload-wrap">
+                                          <ul class="product-upload-list 1-colum">
+                                              <li>
+                                                  <div>
+                                                      <input type="hidden" name="type" value="auth_page_image">
+                                                      <input class="form-control d-none require" type="file" placeholder="Upload Image" name="webimages" id="auth_page_image" data-error="Please choose an image to upload.">
+                                                      <label class="dragdrop_box" for="auth_page_image">                                                 
+                                                          <span class="dragdrop_icon">
+                                                              <img src="/images/drag.svg" alt="icon" class="img-fluid">
+                                                          </span>
+                                                          <div class="dragdrop_info">
+                                                              <p><span>Browse</span> Image</p>
+                                                              <span class="dragdrop_sprt">Recommended Size 398x374</span><br>
+                                                              <span class="dragdrop_sprt">Supports: JPG, PNG </span>
+                                                              <p><span class="dragdrop_sprt numberOfFiles"></span></p>
+                                                          </div>                                                
+                                                      </label>
+                                                  </div>
+                                              </li>
+                                              <% if(webImages && webImages.auth_page_image){ %>
+                                              <li class="imgArea">
+                                                  <div class="product-upload-image text-center">
+                                                    <img src="/uploads/webimages/<%= webImages ? webImages.auth_page_image : '' %>" alt="image" class="img-fluid">
+                                                  </div>
+                                              </li>
+                                              <% } %>
+                                          </ul>  
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card-header">
+                            <h4>Web Config</h4>
+                        </div>
+                      <form class="card" action="save_settings" method="post" autocomplete="off" data-redirect="settings/web-config">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">App Name</label>
+                                <input class="form-control require" type="text" name="webSetting[APP_NAME]" placeholder="Enter Name" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.APP_NAME : '' %>">
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">Contact Person</label>
+                                <input class="form-control" type="text" name="webSetting[cp_name]" placeholder="Enter Name" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.cp_name : '' %>">
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">Address</label>
+                                <input class="form-control" type="text" name="webSetting[address]" name="webSetting[company_name]" placeholder="Enter address" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.address : '' %>">
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">Country</label>
+                                <input class="form-control" type="text" name="webSetting[country]" placeholder="Country" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.country : '' %>">
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">City</label>
+                                <input class="form-control" type="text"  name="webSetting[city]" placeholder="City" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.city : '' %>">
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">State</label>
+                                <input class="form-control" type="text"  name="webSetting[state]" placeholder="State" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.state : '' %>">
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">Postal Code</label>
+                                <input class="form-control" type="text" name="webSetting[postal_code]" placeholder="ZIP Code" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.postal_code : '' %>">
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input class="form-control" type="email" name="webSetting[company_email]" placeholder="Enter Email" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.company_email : '' %>">
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input class="form-control" type="text" name="webSetting[company_phone]" placeholder="Enter Number" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.company_phone : '' %>">
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">Mobile Number</label>
+                                <input class="form-control" type="text" name="webSetting[company_mobile]" placeholder="Enter Number" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.company_mobile : '' %>">
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">Fax</label>
+                                <input class="form-control" type="text" name="webSetting[company_fax]" placeholder="818 22 0011" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.company_fax : '' %>">
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">Website Url</label>
+                                <input class="form-control" type="text" name="webSetting[company_url]" placeholder="Enter Url" data-bs-original-title="" title="" value="<%= webSetting ? webSetting.company_url : '' %>">
+                              </div>
+                            </div>
+                          </div>
+                          <button class="btn btn-primary squer-btn" data-action="submitMe"  type="submit" data-bs-original-title="" title="">save</button>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+<%- include('../partials/footer'); %>

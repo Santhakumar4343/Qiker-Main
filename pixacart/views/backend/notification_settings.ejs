@@ -1,0 +1,148 @@
+<%- include('../partials/header'); %> 
+<!-- Container Start -->
+<div class="page-wrapper">
+    <div class="main-content">
+        <!-- Page Title Start -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-title-wrapper">
+                    <div class="page-title-box">
+                        <h4 class="page-title"><%=viewTitle%></h4>
+                    </div>
+                    <div class="breadcrumb-list">
+                        <ul>
+                            <li class="breadcrumb-link">
+                                <a href="index.html"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-link active"><%=viewTitle%></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Table Start -->
+        <div class="row">
+            <!-- Styled Table Card-->
+               <div class="col-xl-6 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Firebase notification config</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="save_settings" method="post" autocomplete="off" data-redirect="settings/notification-config">
+                                <div class="row"> 
+                                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="pc-checkout-tab">
+                                            <div class="pc-radio-button">
+                                                <input id="radio-3" type="radio"  name="FIREBASE[status]" value="1" <%= firebaseDetails.status == 1 ? 'checked' : '' %>>
+                                                <label  for="radio-3" class="radio-label">Active</label>
+                                            </div>
+                                            <div class="pc-radio-button">
+                                                <input id="radio-4"  type="radio"  name="FIREBASE[status]" value="0" <%= firebaseDetails.status == 0 ? 'checked' : '' %>>
+                                                <label for="radio-4" class="radio-label">Inactive</label>
+                                            </div>
+                                            <div class="pc-place-order">
+                                                <!--button type="button" class="btn btn-primary squer-btn mt-2 mr-2">Place Order</button-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="text-input" class="col-form-label">Firebase Server Key</label>
+                                            <input class="form-control require" type="text" name="FIREBASE[FIREBASE_SERVER_KEY]"  placeholder="Firebase server key" value="<%= firebaseDetails ? firebaseDetails.FIREBASE_SERVER_KEY : '' %>">
+                                        </div>
+                                    </div>
+                                   
+                                   </div>
+                                   <div class="form-group mb-0">
+                                       <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                   </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Send Notification</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="settings/sendNotification" method="post" autocomplete="off" data-redirect="settings/notification-config">
+                                    <div class="row">
+                                        <!-- <div class="col-xl-12 col-lg-6">
+                                            <div class="form-group">
+                                                <label for="text-input" class="col-form-label">Select User Type</label>
+                                                <input class="form-control require" type="text" name="FIREBASE_USER_TYPE"  placeholder="User Type" >
+                                            </div>
+                                        </div> -->
+                                        <div class="col-xl-12 col-lg-6">
+                                            <div class="form-group">
+                                               <label for="city" class="col-form-label">To</label>
+                                                <select class="js-data-ajax form-control require" data-ajax--url="getActiveUserList" data-placeholder="Select User List" multiple="" name="user_ids[]" id="">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-6">
+                                            <div class="form-group">
+                                                <label for="text-input" class="col-form-label">Title</label>
+                                                <input class="form-control require" type="text" name="noti_title"  placeholder="Enter Title" >
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-6">
+                                            <div class="form-group">
+                                                <label for="text-input" class="col-form-label">Notification Message</label>
+                                                <input class="form-control require" type="text" name="noti_msg"  placeholder="Enter Message" >
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-6">
+                                            <div class="form-group">
+                                                <label for="text-input" class="col-form-label">Target Link</label>
+                                                <input class="form-control require" type="text" name="noti_link"  placeholder="Enter Webpage Link" >
+                                            </div>
+                                        </div>
+                                        <hr class="mt-4 mb-4">
+                                        <h5 class="from-title mb-1">Upload images</h5>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="product-upload-wrap">
+                                                    <ul class="product-upload-list">
+                                                        <li>
+                                                            <div>
+                                                                <input class="form-control d-none" type="file" placeholder="Upload Image" name="notification_image" id="notification_image" multiple >
+                                                                <label class="dragdrop_box" for="notification_image">                                                 
+                                                                    <span class="dragdrop_icon">
+                                                                        <img src="/images/drag.svg" alt="icon" class="img-fluid">
+                                                                    </span>
+                                                                    <div class="dragdrop_info">
+                                                                        <p><span>Upload</span> Your File</p>
+                                                                        <span class="dragdrop_sprt">Recommended Size 85x85</span><br>
+                                                                        <span class="dragdrop_sprt">Supports: JPG, PNG </span>
+                                                                        <p><span class="dragdrop_sprt numberOfFiles"></span></p>
+                                                                    </div>                                                
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                        <li class="imgArea" style="display: none;">
+                                                            <div class="product-upload-image text-center">
+                                                                <img src="" alt="image" class="img-fluid">
+                                                                <button class="btn btn-primary" type="button" onclick="confirmBoxAlert($(this))" data-url="products/delete_product_variant_thumb" data-delete-id="">Remove</button>
+                                                            </div>
+                                                        </li>
+                                                    </ul>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                       <div class="form-group mb-0">
+                                           <button class="btn btn-primary squer-btn mt-2 mr-2" id="sendBulkMail" type="button">Send <i class="fab fa-telegram-plane"></i></button>
+                                       </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                </div>
+
+        <%- include('../partials/footer'); %> 

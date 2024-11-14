@@ -1,0 +1,86 @@
+<%- include('../partials/header'); %>
+<!-- Container Start -->
+        <div class="page-wrapper">
+            <div class="main-content">
+                <!-- Page Title Start -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-box">
+                                <h4 class="page-title"><%=viewTitle%></h4>
+                            </div>
+                            <div class="breadcrumb-list">
+                                <ul>
+                                    <li class="breadcrumb-link">
+                                        <a href="index.html"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                                    </li>
+                                    <li class="breadcrumb-link active"><%=viewTitle%></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Products view Start -->
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="card card-body">
+							<div class="inbox-msg">
+								<div class="mesgs" style="width: 100%;">
+									<div class="chat-list chat-list22">
+									  <div class="chat-people">
+										<div class="chat-img">	
+											<!--i class="fas fa-circle"></i-->
+											<img src="<%= (ticketDetails.ticket_uid) ? ticketDetails.ticket_uid.profile_image : ''; %>" alt="">
+										</div>
+										<div class="chat-ib">
+										  <h5><%= (ticketDetails.ticket_uid) ? ticketDetails.ticket_uid.fullname : ''; %></h5>
+										  <p>CreatedAt  <%= (ticketDetails) ? moment(ticketDetails.createdAt).format('DD-MMM-YYYY HH:MM') : ''; %></p>
+										  <!--p>Active Now</p-->
+										</div>
+									  </div>
+									</div>
+								  <div class="msg-history">
+									  <% if(ticketReplies) { 
+											ticketReplies.forEach(function(reply) { 
+											if(reply.sender_id == locals.user.user_id) {
+										%>
+										<div class="outgoing-msg">
+											<div class="sent-msg">
+											  <p><%=reply.message; %></p>
+											  <span class="time-date"><%=moment(reply.createdAt).format('HH:MM | DD MMMM'); %></span> 
+											</div>
+											<div class="incoming-msg-img">
+												<!--img src="https://via.placeholder.com/60x60" alt=""--> 
+											</div>
+										</div>
+									<% }else{ %>
+										<div class="incoming-msg">
+											<div class="incoming-msg-img"> <!--img src="https://via.placeholder.com/40x40" alt=""--> </div>
+											<div class="received-msg">
+											<div class="received-withd-msg">
+												<p><%=reply.message; %></p>
+												<span class="time-date"><%=moment(reply.createdAt).format('HH:MM | DD MMMM'); %></span></div>
+											</div>
+										</div>
+								<%	}
+								 });
+								} 
+								%>
+								</div>
+								  <div class="type-msg">
+									<div class="input-msg-write">
+										<form action="support/ticket_reply_send" method="post" autocomplete="off" data-reset="1">
+											<input type="hidden" name="ticket_id" value="<%= (ticketDetails) ? ticketDetails._id : ''; %>"  />
+											<input type="hidden" name="receiver_id"  value="<%= (ticketDetails.ticket_uid) ? ticketDetails.ticket_uid._id : ''; %>" />
+											<input type="text" class="write-msg require" name="reply_msg" id="reply_msg" placeholder="Type a message" data-error="Please enter message" />
+											<button class="msg-send-btn" type="button" id="sendReplyBtn">Send <i class="fab fa-telegram-plane"></i></button>
+										</form>
+									</div>
+								  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+<%- include('../partials/footer'); %>

@@ -1,0 +1,96 @@
+<%- include('../partials/header'); %>
+    <!-- Container Start -->
+    <div class="page-wrapper">
+        <div class="main-content">
+            <!-- Page Title Start -->
+            <div class="row">
+                <div class="col xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-title-wrapper">
+                        <div class="page-title-box">
+                            <h4 class="page-title"><%=viewTitle%></h4>
+                        </div>
+                        <div class="breadcrumb-list">
+                            <ul>
+                                <li class="breadcrumb-link">
+                                    <a href="index.html"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-link active"><%=viewTitle%></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Products view Start -->
+            <div class="row">
+                <!-- Styled Table Card-->
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card table-card">
+                        <div class="card-header pb-0">
+                            <h4><%=pageTitle%></h4>
+                        </div>
+                        <div class="card-body">
+                           <table class="table table-striped table-bordered dt-responsive nowrap display dataTableAjax" style="width:100%" data-action-url="admin/withdraw-request-list" data-target-section="tbody" data-column-class="[{className:'sno'},{className:'withdrawAmt'},{className: 'userName'},{className: 'reqTime'},{className: 'status'},{className: 'action'}]"  data-refresh-dataTablePosition='0' data-filter='filter' data-sort="[{'targets': [1],'orderable': false},{'targets': [],'visible': false}]">
+                                <thead>
+                                    <tr>
+                                        <th class="sno">#</th>
+                                        <th class="withdrawAmt">Amount</th>
+                                        <th class="userName">Seller Name</th>
+                                        <th class="reqTime">Request Time</th>
+                                        <th class="status">Status</th>
+                                        <th class="action">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                     <!-- Model 6-7-8 -->
+	<div class="modal fade" id="withdrawRequestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel02" data-title="Withdraw Request">Withdraw Request</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="admin/processWithdrawRequest" method="post" autocomplete="off">
+            <div class="modal-body">
+                <input type="hidden" name="withdraw_id" id="withdraw_id" value="0">
+                <div class="form-group">
+                    <label class="col-form-label">Outstandig Amount:</label>
+                    <input type="number" class="form-control require" name="outstandig_amt" id="outstandig_amt" readonly>
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label">Withdraw Requested Amount:</label>
+                    <input type="number" class="form-control require" name="withdraw_amt" id="withdraw_amt" readonly>
+                </div>
+                <div class="form-group" id="withdrawStaus">
+                    <label for="city" class="col-form-label">Stauts</label>
+                    <select class="select2 form-control require" name="withdraw_status" id="withdraw_status">
+                            <option value="">Select Status</option>
+                            <option value="1">Success</option>
+                            <option value="2">Reject</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label">Transaction Id:</label>
+                  <input type="text" class="form-control require" name="transaction_id" id="transaction_id">
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" data-action="submitMe" class="btn btn-primary">Changes Stauts</button>
+            </div>
+        </form>
+          </div>
+        </div>
+      </div>
+
+
+<%- include('../partials/footer'); %>

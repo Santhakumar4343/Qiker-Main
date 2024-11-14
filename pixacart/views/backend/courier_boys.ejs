@@ -1,0 +1,259 @@
+<%- include('../partials/header'); %>
+<!-- Container Start -->
+<div class="page-wrapper">
+    <div class="main-content">
+        <!-- Page Title Start -->
+        <div class="row">
+            <div class="col xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-title-wrapper">
+                    <div class="page-title-box">
+                        <h4 class="page-title"><%= viewTitle %></h4>
+                    </div>
+                    <div class="breadcrumb-list">
+                        <ul>
+                            <li class="breadcrumb-link">
+                                <a href="index.html"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-link active"><%= viewTitle %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Courier Services view Start -->
+        <div class="row">
+            <!-- Styled Table Card-->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card table-card">
+                    <div class="card-header ttl-with-btn pb-0">
+                        <h4><%= pageTitle %></h4>
+                        <div class="card-header-btn">
+                            <a class="pc-btn resetModalForm" data-toggle="modal" data-target="#createCourierServiceModal" data-whatever="@mdo" id="addNewServiceBtn">Add New Courier Boy</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-bordered dt-responsive nowrap display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th class="sr">#</th>
+                                    <th class="service_name">Boy Name</th>
+                                    <th class="email">Email</th>
+                                    <th class="phone_number">Phone Number</th>
+                                    <th class="address">Address</th>
+                                    <th class="city">City</th>
+                                    <th class="postal_code">Postal Code</th>
+                                    <th class="country">Country</th>
+                                    <th class="state">State</th>
+                                    <th class="status">Status</th>
+                                    <th class="action">Action</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (courierServices && courierServices.length > 0) { %>
+                                    <% courierServices.forEach(function(service, index) { %>
+                                        <tr>
+                                            <td><%= index + 1 %></td>
+                                            <td><%= service.service_name %></td>
+                                            <td><%= service.email %></td>
+                                            <td><%= service.phone_number %></td>
+                                            <td><%= service.address %></td>
+                                            <td><%= service.city %></td>
+                                            <td><%= service.postal_code %></td>
+                                            <td><%= service.country %></td>
+                                            <td><%= service.state %></td>
+                                            <td><%= service.status === 1 ? 'Active' : 'Inactive' %></td>
+                                            <td>
+                                                <button class="btn btn-primary" onclick="editCourierService('<%= service._id %>', '<%= service.service_name %>', '<%= service.email %>', '<%= service.phone_number %>', '<%= service.address %>','<%= service.address %>','<%= service.city %>','<%= service.postal_code %>','<%= service.country %>','<%= service.state %>')">Edit</button>
+                                                <button class="btn btn-danger" onclick="confirmDelete('<%= service._id %>', '<%= service.service_name %>')">Delete</button>
+                                            </td> 
+                                        </tr>
+                                    <% }); %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="11" class="text-center">No courier services available.</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+ 
+       <!-- Modal for Create/Update Courier Service -->
+<!-- Modal for Create/Update Courier Service -->
+<div class="modal fade" id="createCourierServiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Courier Boy</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="courierServiceForm" autocomplete="off">
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="service_id" value="0">
+                    <div class="form-group">
+                        <label class="col-form-label">Boy Name:</label>
+                        <input type="text" class="form-control require" name="service_name" id="service_name"  required  data-error="Service name field is required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Email:</label>
+                        <input type="email" class="form-control" name="email" id="email" required data-error="Valid email address is required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Password:</label>
+                        <input type="password" class="form-control" name="password" id="password" required data-error="Password field is required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Phone Number:</label>
+                        <input type="text" class="form-control" name="phone_number" id="phone_number" required data-error="Phone number field is required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Address:</label>
+                        <input type="text" class="form-control" name="address" id="address" required data-error="Address field is required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">City:</label>
+                        <input type="text" class="form-control" name="city" id="city" required data-error="City field is required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Postal Code:</label>
+                        <input type="text" class="form-control" name="postal_code" id="postal_code" required data-error="Postal code field is required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Country:</label>
+                        <input type="text" class="form-control" name="country" id="country" required data-error="Country field is required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">State:</label>
+                        <input type="text" class="form-control" name="state" id="state" required data-error="State field is required">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.reload()">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="submitCourierService(event)">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ 
+ 
+<%- include('../partials/footer'); %>
+ 
+ 
+<script>
+
+function confirmDelete(serviceId, serviceName) {
+    // Use a confirmation dialog (using SweetAlert2 for a better UX)
+    Swal.fire({
+        title: `Are you sure you want to delete ${serviceName}?`,
+        text: "This action cannot be undone!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            deleteCourierService(serviceId);
+        }
+    });
+}
+
+function deleteCourierService(serviceId) {
+    $.ajax({
+        type: 'DELETE',
+        url: `/delete_courier_boy`, // Updated URL
+        contentType: 'application/json', // Specify JSON content type
+        data: JSON.stringify({ id: serviceId }), // Send ID as JSON
+        success: function(response) {
+            Swal.fire(
+                'Deleted!',
+                'The courier boy has been deleted.',
+                'success'
+            );
+            location.reload(); // or remove the row from the table
+        },
+        error: function(err) {
+            if (err.status === 404) {
+                Swal.fire(
+                    'Not Found!',
+                    'Courier boy not found.',
+                    'warning'
+                );
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'There was an error deleting the boy.',
+                    'error'
+                );
+            }
+            console.error('Error:', err);
+        }
+    });
+}
+
+
+    function editCourierService(id, serviceName, email, phoneNumber,address,city,postal_code,country,state) {
+    // Populate the form fields with the existing data
+    $('#service_id').val(id);
+    $('#service_name').val(serviceName);
+    $('#email').val(email);
+    $('#phone_number').val(phoneNumber);
+    $('#address').val(address);
+    $('#city').val(city);
+    $('#postal_code').val(postal_code);
+    $('#country').val(country);
+    $('#state').val(state);
+   
+    if (!serviceName || !email || !password || !phoneNumber) {
+        Swal.fire('Error!', 'All fields are required!', 'error');
+        return; // Stop form submission
+    }
+    // Change the modal title
+    $('#exampleModalLabel').text('Edit Courier Boy');
+    
+    // Show the modal
+    $('#createCourierServiceModal').modal('show');
+}
+    function submitCourierService(event) {
+        
+        event.preventDefault(); // Prevent default form submission
+
+const serviceName = $('#service_name').val().trim();
+const email = $('#email').val().trim();
+const password = $('#password').val().trim();
+const phoneNumber = $('#phone_number').val().trim();
+const address = $('#address').val().trim();
+const city = $('#city').val().trim();
+const postal_code = $('#postal_code').val().trim();
+const country = $('#country').val().trim();
+const state = $('#state').val().trim();
+if (!serviceName || !email || !password || !phoneNumber) {
+        Swal.fire('Error!', 'All fields are required!', 'error');
+        return;
+    }
+
+        const formData = $('#courierServiceForm').serialize(); // Serialize form data
+ 
+        $.ajax({
+            type: 'POST',
+            url: 'create_or_update_courier_boys',
+            data: formData,
+            success: function(response) {
+            Swal.fire('Success!', 'Courier boy saved successfully.', 'success');
+            location.reload();
+            $('#createCourierServiceModal').modal('hide');
+        },
+        error: function(err) {
+            Swal.fire('Error!', 'An error occurred while saving the boy.', 'error');
+            console.error('Error:', err);
+        }
+        });
+    }
+</script>
+ 

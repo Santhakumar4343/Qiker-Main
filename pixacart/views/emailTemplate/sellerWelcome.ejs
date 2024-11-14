@@ -1,0 +1,102 @@
+<html>
+   <head>
+      <title>Email Template</title>
+      <style>
+         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+         p,
+         h1,
+         h2,
+         h3,
+         h4,
+         ol,
+         li,
+         ul,
+         td,
+         tr {
+            font-family: 'Roboto', sans-serif;
+         }
+      </style>
+   </head>
+   <body style="box-sizing: border-box;">
+      <AW:BODY>
+      <table width="600" align="center" bgcolor="#f9f9f9" cellpadding="0" cellspacing="0"
+         style="font-family: 'Roboto', sans-serif;text-align:center;margin:auto!important;width:600px!important;">
+         <tbody>
+            <tr>
+               <td align="center" valign="top" style="background-color:rgb(249 249 249)">
+                  <table width="600" cellpadding="0" cellspacing="0"
+                     style="margin:auto!important;width:600px!important;">
+                     <tbody>
+                        <tr>
+                           <td align="center">
+                              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-image:url(<%=emailTempImg%>);background-size: cover;background-repeat: repeat;">
+                                             <tbody>
+                                                <tr>
+                                                   <td style="padding: 70px 0px;" align="center" >
+                                                      <table border="0" cellpadding="0" cellspacing="0">
+                                                         <tbody>
+                                                            <tr>
+                                                               <td align="center" style="padding-right: 8px;">
+                                                                  <img alt="images" src="<%=logoImg%>" style="border:0;">
+                                                               </td>
+                                                               <td style="font-size:32px!important;color:#ffffff!important;font-weight:800;line-height:28px;"><%=app_name%></td>
+                                                            </tr>
+                                                         </tbody>
+                                                      </table>
+                                                   </td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding:40px 20px;">
+                                             <tbody>
+                                                <tr>
+                                                   <td style="padding:0px 0px 30px;font-size:20px!important;color:#0b2354!important;font-weight:600;line-height:28px;"> Hi <%=member_name%>, </td>
+                                                </tr>
+                                                <tr>
+                                                   <td style="padding:0px 0px 10px;font-size:16px!important;color:#0b2354!important;font-weight:400;line-height:24px;">You registered an account on <%=app_name%>, before being able to use your account you need to verify that, this is your email address by, click on this <a target="_blank" style="color: #ad46f7;font-weight: 500;" href="<%= verify_link %>">link</a> or copy and paste the following link into the address bar of your browser.</td>
+                                                </tr>
+                                                <tr>
+                                                   <td style="padding:0px 0px 0px;font-size:16px!important;color:#0b2354!important;font-weight:400;line-height:24px;"><span style="font-weight:600;">Verify Link -</span>  <%= verify_link %></p>
+                                                   </td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding:40px 0px; border-top: 1px solid #efefef;">
+                                             <tbody>
+                                                <tr>
+                                                   <td style="padding:0px 20px 0px;font-size:16px!important;color:#0b2354!important;font-weight:400;line-height:26px;">To Your Success,</td>
+                                                </tr>
+                                                <tr>
+                                                   <td style="padding:0px 20px 0px;font-size:16px!important;color:#0b2354!important;font-weight:400;line-height:26px;">The <span style="margin-right: 15px;color: #0b2354;font-weight: 600;">Admin</span>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td align="center" style="padding:15px 20px;font-size:14px!important;color:#ffffff!important;font-weight:400;line-height:24px;background-color: rgb(17 161 253)!important;">Copyright <%= new Date().getFullYear();%> © <%=app_name%> All Rights Reserved.</span>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </body>
+</html>

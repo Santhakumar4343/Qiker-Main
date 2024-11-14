@@ -1,0 +1,79 @@
+<%- include('../partials/header'); %> 
+<!-- Container Start -->
+<div class="page-wrapper">
+    <div class="main-content">
+        <!-- Page Title Start -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-title-wrapper">
+                    <div class="page-title-box">
+                        <h4 class="page-title"><%=viewTitle%></h4>
+                    </div>
+                    <div class="breadcrumb-list">
+                        <ul>
+                            <li class="breadcrumb-link">
+                                <a href="index.html"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-link active"><%=viewTitle%></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Table Start -->
+        <div class="row">
+            <!-- Styled Table Card-->
+               <div class="col-xl-6 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Twilio SMS</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="save_settings" method="post" autocomplete="off" data-redirect="settings/sms-config">
+                                <div class="row"> 
+                                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="pc-checkout-tab">
+                                            <div class="pc-radio-button">
+                                                <input id="radio-3" type="radio"  name="twilio_sms[status]" value="1" <%= twilioDetails.status == 1 ? 'checked' : '' %>>
+                                                <label  for="radio-3" class="radio-label">Active</label>
+                                            </div>
+                                            <div class="pc-radio-button">
+                                                <input id="radio-4"  type="radio"  name="twilio_sms[status]" value="0" <%= twilioDetails.status == 0 ? 'checked' : '' %>>
+                                                <label for="radio-4" class="radio-label">Inactive</label>
+                                            </div>
+                                            <div class="pc-place-order">
+                                                <!--button type="button" class="btn btn-primary squer-btn mt-2 mr-2">Place Order</button-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="text-input" class="col-form-label">Twilio Account SID</label>
+                                            <input class="form-control require" type="text" name="twilio_sms[TWILIO_ACCOUNT_SID]"  placeholder="Twilio Account SID" value="<%= twilioDetails ? twilioDetails.TWILIO_ACCOUNT_SID : '' %>">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-6">
+                                         <div class="form-group">
+                                            <label for="text-input" class="col-form-label">Twilio Auth Token</label>
+                                            <input class="form-control require" type="text" name="twilio_sms[TWILIO_AUTH_TOKEN]" placeholder="Token" value="<%= twilioDetails ? twilioDetails.TWILIO_AUTH_TOKEN : '' %>">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-6">
+                                        <div class="form-group">
+                                           <label for="text-input" class="col-form-label">From Number</label>
+                                           <input class="form-control require" type="text" name="twilio_sms[TWILIO_FROM_NUMBER]" placeholder="From Number" value="<%= twilioDetails ? twilioDetails.TWILIO_FROM_NUMBER : '' %>">
+                                       </div>
+                                   </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <button class="btn btn-primary squer-btn mt-2 mr-2" type="submit" data-action="submitMe">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+        <%- include('../partials/footer'); %> 

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zxx">
+<!--<![endif]-->
+<!-- Begin Head -->
+
+<head>
+    <title><%=viewTitle%></title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="MobileOptimized" content="320">
+    <!--Start Style -->
+    <link rel="stylesheet" type="text/css" href="<%=config.APP_URL; %>css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="<%=config.APP_URL; %>css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<%=config.APP_URL; %>css/auth.css">
+    <!-- Favicon Link -->
+    <%if(webImages && webImages.favicon){ %>
+        <link rel="shortcut icon" type="image/png" href="<%=config.APP_URL; %>uploads/webimages/<%=webImages.favicon%>">
+    <%  }else{ %>      
+    <link rel="shortcut icon" type="image/png" href="<%=config.DEFAULT_FAVICON%>">
+    <% } %>
+</head>
+<body>

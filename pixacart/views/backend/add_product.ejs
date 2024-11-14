@@ -1,0 +1,123 @@
+<%- include('../partials/header'); %> 
+<!-- Container Start -->
+<div class="page-wrapper">
+    <div class="main-content">
+        <!-- Page Title Start -->
+        <div class="row">
+            <div class="col xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-title-wrapper">
+                    <div class="page-title-box">
+                        <h4 class="page-title"><%=viewTitle%></h4>
+                    </div>
+                    <div class="breadcrumb-list">
+                        <ul>
+                            <li class="breadcrumb-link">
+                                <a href="index.html"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-link active"><%=viewTitle%></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- From Start -->
+<div class="from-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4><%=pageTitle%></h4>
+                    <!--p class="card-desc">Here are examples of form add <code>.separate-form</code> tag with inputs.</p-->
+                </div>
+                <div class="card-body">
+                    <form action="create_product" method="post" autocomplete="off">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h5 class="from-title mb-1">Product info</h5>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label for="member-name" class="col-form-label">Product Name</label>
+                                        <input class="form-control require" type="text" placeholder="Product Name" name="pro_name" id="pro_name" value="<%= prodDetails.prod_name ? prodDetails.prod_name : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label for="additional-msg" class="col-form-label">Description</label>
+                                        <textarea class="form-control require" placeholder="Description" name="pro_desc" id="pro_desc"><%= prodDetails.prod_description ? prodDetails.prod_description : '' %></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mt-4 mb-4">
+                            <h5 class="from-title mb-1">General Info</h5>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label for="city" class="col-form-label">Category</label>
+                                        <select class="select2 form-control require"  name="pro_cate" id="pro_cate">
+                                                <option value="" selected="" disabled="">---Select---</option>
+                                                <% if (cateList) { %>
+                                                    <% cateList.forEach(function(cate) { %>
+                                                         <option value="<%= cate.id %>" <%= prodDetails.prod_cate == cate.id ? 'selected' : '' %>><%= cate.cate_name %></option>
+                                                    <% }); %>
+                                                <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label for="city" class="col-form-label">Sub category</label>
+                                        <select class="select2 form-control require" name="pro_subcate" id="pro_subcate">
+                                            <% if (prodDetails._id) { %>
+                                                <% if (subcategoryList) { %>
+                                                    <% subcategoryList.forEach(function(subcate) {  %>
+                                                        <% if (subcate.parent_id.toString() == prodDetails.prod_cate.toString() ) { %>
+                                                            <option value="<%= subcate.id %>" <%= prodDetails.prod_subcate == subcate.id ? 'selected' : '' %>><%= subcate.cate_name %></option>
+                                                        <% } %>
+                                                    <% }); %>
+                                                <% } %>
+                                                
+                                            <% } else { %>    
+                                                <option value="" selected="" disabled="">---Select Category First---</option>
+                                            <% } %>    
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label for="city" class="col-form-label">Brand</label>
+                                        <select class="select2 form-control require" name="pro_brand" id="pro_brand">
+                                                <option value="" selected="" disabled="">---Select---</option>
+                                                <% if (brandsList) { %>
+                                                    <% brandsList.forEach(function(brand) { %>
+                                                        <option value="<%= brand.id %>" <%= prodDetails.prod_brand == brand.id ? 'selected' : '' %>><%= brand.brand_name %></option>
+                                                    <% }); %>
+                                                <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <% unitList = ['kg','pc','gms','ltrs']; %>
+                                        <label for="city" class="col-form-label">Unit</label>
+                                        <select class="select2 form-control require" name="pro_unit" id="pro_unit">
+                                            <% unitList.forEach(function(unit) { %>
+                                                <option value="<%= unit %>" <%= prodDetails.prod_unit == unit ? 'selected' : '' %> ><%= unit %></option>
+                                            <% }); %>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mt-4 mb-4">
+                            <div class="form-group mb-0">
+                                <input type="hidden" name="id" id="prod_id" value="<%= prodDetails._id ? prodDetails._id : 0 %>">
+                                <!--button class="btn btn-primary" type="button">Reset</button-->
+                                <button class="btn btn-danger" type="submit" id="addProduct" data-action="submitMe">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer'); %>
